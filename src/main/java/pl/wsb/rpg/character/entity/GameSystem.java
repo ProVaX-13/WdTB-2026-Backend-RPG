@@ -2,6 +2,9 @@ package pl.wsb.rpg.character.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "game_system")
 public class GameSystem {
@@ -21,6 +24,9 @@ public class GameSystem {
 
     @Column(name = "is_active", nullable = false)
     private Boolean systemIsActive;
+
+    @OneToMany(mappedBy = "gameSystem")
+    private List<GameCharacter> characters = new ArrayList<>();
 
     protected GameSystem(){}
     public GameSystem(String name, String publisher, String edition, Boolean isActive) {
